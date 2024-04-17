@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cppserver-pod
+  labels:
+    app: cppserver
+spec:
+  containers:
+  - name: cppserver-container
+    image: kaos0w0/mi-servidor-cpp:latest
+    ports:
+    - containerPort: 8001
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cppserver-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8001
+      protocol: TCP
+  selector:
+    app: cppserver
