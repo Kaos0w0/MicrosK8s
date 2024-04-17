@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: getial-service-pod
+  labels:
+    app: getial-service
+spec:
+  containers:
+    - name: getial-service-container
+      image: getialjuan/msvc_getial:latest
+      ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: getial-service-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: getial-service
