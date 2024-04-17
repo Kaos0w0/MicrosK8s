@@ -22,6 +22,6 @@ spec:
     app: msvc-bucheli
   ports:
     - protocol: TCP
-      port: 81
+      port: 80
       targetPort: 8000
   type: ClusterIP
