@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: brandon-pod
+  labels:
+    app: brandon-microservice
+spec:
+  containers:
+    - name: brandon-container
+      image: br4z/microservice
+      ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: brandon-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: brandon-microservice
