@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: msvc-bucheli-pod
+  labels:
+    app: msvc-bucheli
+spec:
+  containers:
+  - name: msvc-bucheli
+    image: jose9496/msvc_bucheli_fastapi:v1
+    ports:
+    - containerPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: msvc-bucheli-svc
+spec:
+  selector:
+    app: msvc-bucheli
+  ports:
+    - protocol: TCP
+      port: 81
+      targetPort: 8000
+  type: ClusterIP
